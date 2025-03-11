@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chamados</title>
+    <link rel="stylesheet" href="/static/css/teste.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div>
+            <a href="https://www.fiesp.com.br/">FIESP</a>
+            <a href="https://www.ciesp.com.br/">CIESP</a>
+            <a href="https://www.sesisp.org.br/">SESI</a>
+            <a href="https://www.sp.senai.br/">SENAI</a>
+            <a href="https://www.fiesp.com.br/instituto-roberto-simonsen-irs/">IRS</a>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/senaisaopaulo"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/senaisaopaulo"><i class="fab fa-twitter"></i></a>
+            <a href="https://br.linkedin.com/school/senaisp/"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.instagram.com/senai.sp/#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+        <input type="text" placeholder="Digite um chamado">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+
+    <!-- Table -->
+   <div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Descrição</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chamado in chamados %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ chamado.descricao }}</td>
+                <td>
+                    {% if chamado.status == 'ongoing' %}
+                        Em Andamento
+                    {% elif chamado.status == 'finished' %}
+                        Finalizado
+                    {% elif chamado.status == 'most-urgent' %}
+                        Muito Urgente
+                    {% elif chamado.status == 'urgent' %}
+                        Urgente
+                    {% elif chamado.status == 'common' %}
+                        Comum
+                    {% elif chamado.status == 'no-status' %}
+                        Sem Status
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Table Footer -->
+    <div class="table-footer">
+        <div id="results-count">Exibindo 6 de 6</div>
+        <div class="pagination">
+            <button id="prev-page" disabled>Anterior</button>
+            <span id="current-page">Página 1</span>
+            <button id="next-page" disabled>Próxima</button>
+        </div>
+    </div>
+   </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        Copyright 2025 © Todos os direitos reservados.
+    </footer>
+<script src="/static/js/teste.js"></script>
+</body>
+
+</html>
